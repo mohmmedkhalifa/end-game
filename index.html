@@ -179,14 +179,35 @@
     }
 
     function step5() {
-      app.innerHTML = `
-        <p>أبحث عنك في الوجوه<br>بين النجوم<br>فوق الغيوم<br>تساقطت علي الهموم<br>وإذ بي أسير بالتائهين<br>وفجأة سكنت النجوم<br>وسَطَعْتِ...</p>
-      `;
-      setTimeout(() => {
-        currentStep++;
-        showStep();
-      }, 120000);
+  let seconds = 120; // عدد الثواني
+  const timer = document.createElement("p");
+  timer.textContent = `الوقت المتبقي: ${seconds} ثانية`;
+  app.appendChild(timer);
+
+  const interval = setInterval(() => {
+    seconds--;
+    timer.textContent = `الوقت المتبقي: ${seconds} ثانية`;
+
+    if (seconds <= 0) {
+      clearInterval(interval);
+      currentStep++;
+      showStep();
     }
+  }, 1000);
+
+  const poem = document.createElement("p");
+  poem.innerHTML = `
+    أبحث عنك في الوجوه<br>
+    بين النجوم<br>
+    فوق الغيوم<br>
+    تساقطت علي الهموم<br>
+    وإذ بي أسير بالتائهين<br>
+    وفجأة سكنت النجوم<br>
+    وسَطَعْتِ...
+  `;
+  app.appendChild(poem);
+}
+
 
     function step6() {
       app.innerHTML = `
