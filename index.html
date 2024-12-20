@@ -122,12 +122,12 @@
         count++;
         counter.textContent = count;
         if (count === 4) {
-          alert("في أبريل تبدأ الحكايات بالزهور...");
+          alert("أنتِ مثل الزهور التي تتفتح في أبريل، تحملين في قلبك إشراقة الربيع وجمال البدايات الجديدة. مواليد هذا الشهر هم رمز للتجدد، الرقة، والهدوء الذي يسكن أعماق أرواحهم");
         } else if (count === 7) {
-          alert("مواليد يوليو، أنتم كأشعة شمس الصيف...");
+          alert("مواليد يوليو هم كأشعة شمس الصيف: دافئون، مشرقون، وتملكون قلوبًا تنبض بالحب والإلهام. معكم لا يعرف العالم سوى إشراقة جديدة");
         } else if (count === 97) {
-          alert("مواليد 1997، أنتم جيل الأحلام...");
-        } else if (count >= 300) {
+          alert("مواليد 1997، أنتم جيل الأحلام الكبيرة والتغيرات السريعة، تحملون في أرواحكم توازنًا بين عراقة الماضي وإبداع المستقبل، وروحكم تزداد تألقًا مع مرور الزمن");
+        } else if (count >= 150) {
           currentStep++;
           showStep();
         }
@@ -170,7 +170,7 @@
     }
 
     function step5() {
-      let seconds = 120; // عدد الثواني
+      let seconds = 90; // عدد الثواني
       const timer = document.createElement("p");
       timer.textContent = `الوقت المتبقي: ${seconds} ثانية`;
       app.appendChild(timer);
@@ -254,7 +254,7 @@
 
     function step8() {
       const message = document.createElement("p");
-      message.textContent = "اكتب ما يجول في قلبك وخاطرك:";
+      message.textContent = "اكتب ما يجول في قلبك وخاطرك وأرسلي إلي:";
       app.appendChild(message);
 
       const textarea = document.createElement("textarea");
