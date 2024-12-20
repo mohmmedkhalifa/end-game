@@ -74,7 +74,7 @@
       else if (currentStep === 10) step10();
     }
 
-    function step1() {
+    
       app.innerHTML = `<p>أهلاً بك نون، لعبة النهاية، استمتعي</p>`;
       const button = document.createElement("button");
       button.textContent = "بدء اللعبة";
@@ -83,7 +83,30 @@
         showStep();
       };
       app.appendChild(button);
-    }
+    }function step1() {
+  const stepIndicator = document.createElement("p");
+  stepIndicator.textContent = "الخطوة 1 من 10";
+  stepIndicator.style.fontSize = "18px";
+  stepIndicator.style.color = "#555";
+  stepIndicator.style.textAlign = "center";
+  stepIndicator.style.marginBottom = "20px";
+  app.appendChild(stepIndicator);
+
+  const welcomeMessage = document.createElement("p");
+  welcomeMessage.textContent = "أهلاً بك نون، لعبة النهاية، استمتعي";
+  welcomeMessage.style.fontSize = "24px";
+  welcomeMessage.style.textAlign = "center";
+  app.appendChild(welcomeMessage);
+
+  const startButton = document.createElement("button");
+  startButton.textContent = "بدء اللعبة";
+  startButton.onclick = () => {
+    currentStep++;
+    showStep();
+  };
+  app.appendChild(startButton);
+}
+
 
     function step2() {
       const hint = document.createElement("p");
@@ -129,11 +152,11 @@
         count++;
         counter.textContent = count;
         if (count === 4) {
-          alert("مواليد شهر ٤: اقتباس جميل");
+          alert(""في أبريل تبدأ الحكايات بالزهور، وتجدد الأرواح بعطر الربيع، فأنت مثل شهر ميلادك، بداية جديدة تحمل في طياتها جمال البدايات."");
         } else if (count === 7) {
-          alert("مواليد شهر ٧: اقتباس جميل");
+          alert("**"مواليد يوليو، أنتم كأشعة شمس الصيف: دافئون، مشرقون، وتملكون قلوبًا تنبض بالحب والإلهام."**");
         } else if (count === 97) {
-          alert("مواليد سنة ١٩٩٧: اقتباس رائع");
+          alert("مواليد 1997، أنتم جيل الأحلام الكبيرة والتغيرات السريعة، تحملون في أرواحكم توازنًا بين عراقة الماضي وإبداع المستقبل");
           hint.textContent = "الآن يمكنك الضغط سريعاً";
         } else if (count >= 300) {
           currentStep++;
@@ -209,7 +232,7 @@
 }
 
 
-    function step6() {
+    
       app.innerHTML = `
         <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
           src="https://on.soundcloud.com/D8RXNXGMCiY3Xh3p9"></iframe>
@@ -222,8 +245,27 @@
       };
       app.appendChild(button);
     }
+function step6() {
+  const message = document.createElement("p");
+  message.textContent = "اضغط للاستماع";
+  app.appendChild(message);
 
-    function step7() {
+  const link = document.createElement("a");
+  link.href = "https://on.soundcloud.com/D8RXNXGMCiY3Xh3p9";
+  link.target = "_blank"; // يفتح الرابط في نافذة جديدة
+  link.textContent = "رابط الاستماع";
+  app.appendChild(link);
+
+  const button = document.createElement("button");
+  button.textContent = "التالي";
+  button.onclick = () => {
+    currentStep++;
+    showStep();
+  };
+  app.appendChild(button);
+}
+
+    
       app.innerHTML = `<p>حاول توصيل القلوب!</p>`;
       let attempts = 0;
       const button = document.createElement("button");
@@ -237,9 +279,46 @@
         }
       };
       app.appendChild(button);
-    }
+    }function step7() {
+  app.innerHTML = `<p>ابحث عن القلب المخفي في الشبكة لتصل إلى الحبيب ❤️</p>`;
 
-    function step8() {
+  const grid = document.createElement("div");
+  grid.style.display = "grid";
+  grid.style.gridTemplateColumns = "repeat(5, 50px)";
+  grid.style.gridGap = "10px";
+  grid.style.margin = "20px auto";
+  grid.style.justifyContent = "center";
+
+  const randomHeart = Math.floor(Math.random() * 25); // موقع القلب العشوائي
+
+  for (let i = 0; i < 25; i++) {
+    const cell = document.createElement("button");
+    cell.style.width = "50px";
+    cell.style.height = "50px";
+    cell.textContent = "?";
+    cell.style.backgroundColor = "#fce4ec";
+    cell.style.border = "1px solid #e91e63";
+    cell.style.borderRadius = "5px";
+    cell.style.fontSize = "16px";
+    cell.style.color = "#e91e63";
+    cell.onclick = () => {
+      if (i === randomHeart) {
+        alert("وجدت القلب! 🥰 لقد وصلت إلى الحبيب!");
+        currentStep++;
+        showStep();
+      } else {
+        cell.textContent = "💔";
+        cell.disabled = true;
+      }
+    };
+    grid.appendChild(cell);
+  }
+
+  app.appendChild(grid);
+}
+
+
+    
       const textarea = document.createElement("textarea");
       textarea.placeholder = "اكتب ما شئت وما يجول في قلبك وخاطرك...";
       app.appendChild(textarea);
@@ -257,6 +336,32 @@
       };
       app.appendChild(nextButton);
     }
+function step8() {
+  const message = document.createElement("p");
+  message.textContent = "اكتب ما يجول في قلبك وخاطرك:";
+  app.appendChild(message);
+
+  const textarea = document.createElement("textarea");
+  textarea.placeholder = "اكتب هنا...";
+  app.appendChild(textarea);
+
+  const copyButton = document.createElement("button");
+  copyButton.textContent = "نسخ النص";
+  copyButton.onclick = () => {
+    textarea.select();
+    document.execCommand("copy");
+    alert("تم نسخ النص!");
+  };
+  app.appendChild(copyButton);
+
+  const nextButton = document.createElement("button");
+  nextButton.textContent = "التالي";
+  nextButton.onclick = () => {
+    currentStep++;
+    showStep();
+  };
+  app.appendChild(nextButton);
+}
 
     function step9() {
       app.innerHTML = `<p style="font-size: 2em;">دقيقة صمت</p>`;
@@ -267,12 +372,40 @@
         showStep();
       };
       app.appendChild(button);
-    }
+    }function step9() {
+  const message = document.createElement("p");
+  message.textContent = "دقيقة صمت... 🕊️";
+  message.style.fontSize = "24px";
+  message.style.textAlign = "center";
+  message.style.marginTop = "50px";
+  app.appendChild(message);
+
+  const emojis = document.createElement("p");
+  emojis.textContent = "💫🌸✨💖🌙";
+  emojis.style.fontSize = "36px";
+  emojis.style.textAlign = "center";
+  emojis.style.marginTop = "20px";
+  app.appendChild(emojis);
+
+  const nextButton = document.createElement("button");
+  nextButton.textContent = "التالي";
+  nextButton.onclick = () => {
+    currentStep++;
+    showStep();
+  };
+  app.appendChild(nextButton);
+}
+
 
     function step10() {
       app.innerHTML = `
-        <p>أهلاً بك نون، أشكرك صبرك بوصولك إلى هنا...</p>
-        <p>إلى التي سارت معي في الأشواك...</p>
+        <p>أهلاً بك نون، أشكرك صبرك بوصولك إلى هنا، ربما هذه النهاية ولكن ليست الأبدية، هكذا يخبرني قلبي، ولأنها ليست الأبدية، فإني عاجز عن كتابة شيء لك، ولكن روحي هي روحك تشبهها ولعلهما توأم، احتفظي بها...</p>
+<br>
+        <p>" إلى التي سارت معي في الأشواك فدميت ودميَت، وشقيتُ وشقيَت ثمّ سـارت في طريق، وسرتُ في طريق جريحين بعد المعركة لا نفسها إلى قرار، ولا نفسي إلى استقرار ..."</p>
+<br>
+<p>" هذا اهداء من رواية أشواك لسيد قطب أحثك على قرائتها"
+</p>
+
         <p>النهاية التي تليق بك</p>
       `;
     }
