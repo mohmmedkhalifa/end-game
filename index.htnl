@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لعبة النهاية</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    #app {
+      padding: 20px;
+    }
+
+    button {
+      background-color: #6200ea;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px 0;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:disabled {
+      background-color: #aaa;
+    }
+
+    input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 80%;
+    }
+
+    textarea {
+      width: 80%;
+      height: 100px;
+      padding: 10px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    const app = document.getElementById("app");
+    let currentStep = 1;
+    let attempts = 0;
+
+    function showStep() {
+      app.innerHTML = "";
+
+      const counter = document.createElement("div");
+      counter.textContent = `الخطوة: ${currentStep}/10`;
+      counter.style.marginBottom = "20px";
+      app.appendChild(counter);
+
+      if (currentStep === 1) step1();
+      else if (currentStep === 2) step2();
+      else if (currentStep === 3) step3();
+      else if (currentStep === 4) step4();
+      else if (currentStep === 5) step5();
+      else if (currentStep === 6) step6();
+      else if (currentStep === 7) step7();
+      else if (currentStep === 8) step8();
+      else if (currentStep === 9) step9();
+      else if (currentStep === 10) step10();
+    }
+
+    function step1() {
+      app.innerHTML = `<p>أهلاً بك نون، لعبة النهاية، استمتعي</p>`;
+      const button = document.createElement("button");
+      button.textContent = "بدء اللعبة";
+      button.onclick = () => {
+        currentStep++;
+        showStep();
+      };
+      app.appendChild(button);
+    }
+
+    function step2() {
+      const hint = document.createElement("p");
+      hint.textContent = "شيء له علاقة بالبكاء";
+      app.appendChild(hint);
+
+      const input = document.createElement("input");
+      input.type = "text";
+      input.placeholder = "أدخل كلمة السر";
+      app.appendChild(input);
+
+      const button = document.createElement("button");
+      button.textContent = "تحقق";
+      button.onclick = () => {
+        if (input.value === "كُمي موجود") {
+          currentStep++;
+          showStep();
+        } else {
+          attempts++;
+          if (attempts >= 3) {
+            alert("كلمة السر: كُمي موجود");
+          } else {
+            alert("كلمة السر خاطئة");
+          }
+        }
+      };
+      app.appendChild(button);
+    }
+
+    function step3() {
+      let count = 0;
+      const counter = document.createElement("p");
+      counter.textContent = "0";
+      app.appendChild(counter);
+
+      const hint = document.createElement("p");
+      hint.textContent = "لا تضغط بسرعة حتى لا تفقد المفاجأة";
+      app.appendChild(hint);
+
+      const button = document.createElement("button");
+      button.textContent = "زيادة العدد";
+      button.onclick = () => {
+        count++;
+        counter.textContent = count;
+        if (count === 4) {
+          alert("مواليد شهر ٤: اقتباس جميل");
+        } else if (count === 7) {
+          alert("مواليد شهر ٧: اقتباس جميل");
+        } else if (count === 97) {
+          alert("مواليد سنة ١٩٩٧: اقتباس رائع");
+          hint.textContent = "الآن يمكنك الضغط سريعاً";
+        } else if (count >= 300) {
+          currentStep++;
+          showStep();
+        }
+      };
+      app.appendChild(button);
+    }
+
+    function step4() {
+      app.innerHTML = `<p>اختبار من ٣ أسئلة:</p>`;
+      const questions = [
+        { question: "ما هو لون محمد المفضل؟", options: ["بنفسجي", "أخضر", "أحمر"], answer: 0 },
+        { question: "ما مشروب محمد المفضل؟", options: ["شاي", "عصير", "قهوة"], answer: 2 },
+        { question: "كم طول ووزن محمد؟", options: ["١٦٥/٥٥", "١٦٠/٥٠", "١٧٠/٩٩"], answer: 1 },
+      ];
+      let correctAnswers = 0;
+
+      questions.forEach((q, index) => {
+        const questionText = document.createElement("p");
+        questionText.textContent = q.question;
+        app.appendChild(questionText);
+
+        q.options.forEach((option, i) => {
+          const button = document.createElement("button");
+          button.textContent = option;
+          button.onclick = () => {
+            if (i === q.answer) {
+              correctAnswers++;
+              alert("إجابة صحيحة!");
+            } else {
+              alert("إجابة خاطئة!");
+            }
+            if (index === questions.length - 1) {
+              alert(`عدد الإجابات الصحيحة: ${correctAnswers}`);
+              currentStep++;
+              showStep();
+            }
+          };
+          app.appendChild(button);
+        });
+      });
+    }
+
+    function step5() {
+      app.innerHTML = `
+        <p>أبحث عنك في الوجوه<br>بين النجوم<br>فوق الغيوم<br>تساقطت علي الهموم<br>وإذ بي أسير بالتائهين<br>وفجأة سكنت النجوم<br>وسَطَعْتِ...</p>
+      `;
+      setTimeout(() => {
+        currentStep++;
+        showStep();
+      }, 120000);
+    }
+
+    function step6() {
+      app.innerHTML = `
+        <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+          src="https://on.soundcloud.com/D8RXNXGMCiY3Xh3p9"></iframe>
+      `;
+      const button = document.createElement("button");
+      button.textContent = "التالي";
+      button.onclick = () => {
+        currentStep++;
+        showStep();
+      };
+      app.appendChild(button);
+    }
+
+    function step7() {
+      app.innerHTML = `<p>حاول توصيل القلوب!</p>`;
+      let attempts = 0;
+      const button = document.createElement("button");
+      button.textContent = "حاول مجدداً";
+      button.onclick = () => {
+        attempts++;
+        if (attempts >= 2) {
+          alert("لا يوجد حل لهذه المتاهة");
+          currentStep++;
+          showStep();
+        }
+      };
+      app.appendChild(button);
+    }
+
+    function step8() {
+      const textarea = document.createElement("textarea");
+      textarea.placeholder = "اكتب ما شئت وما يجول في قلبك وخاطرك...";
+      app.appendChild(textarea);
+
+      const saveButton = document.createElement("button");
+      saveButton.textContent = "حفظ النص كصورة";
+      saveButton.onclick = () => alert("النص تم حفظه!");
+      app.appendChild(saveButton);
+
+      const nextButton = document.createElement("button");
+      nextButton.textContent = "التالي";
+      nextButton.onclick = () => {
+        currentStep++;
+        showStep();
+      };
+      app.appendChild(nextButton);
+    }
+
+    function step9() {
+      app.innerHTML = `<p style="font-size: 2em;">دقيقة صمت</p>`;
+      const button = document.createElement("button");
+      button.textContent = "التالي";
+      button.onclick = () => {
+        currentStep++;
+        showStep();
+      };
+      app.appendChild(button);
+    }
+
+    function step10() {
+      app.innerHTML = `
+        <p>أهلاً بك نون، أشكرك صبرك بوصولك إلى هنا...</p>
+        <p>إلى التي سارت معي في الأشواك...</p>
+        <p>النهاية التي تليق بك</p>
+      `;
+    }
+
+    showStep();
+  </script>
+</body>
+</html>
